@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mujer — AGUEL</title>
+  <link rel="stylesheet" href="assets/aguel-store.css" />
+</head>
+<body>
+  <header class="page-opener">
+    <div>
+      <div class="opener-eyebrow">Colombian Resortwear · 45 Prendas &amp; Accesorios</div>
+      <h1 class="opener-title">Mujer</h1>
+    </div>
+    <p class="opener-desc">
+      Linos lavados de alta fluidez, tops halter con herrajes artesanales, mallas en algodón puro, vestidos de paneles y cestería en palma de iraca.
+    </p>
+  </header>
+
+  <div class="whisper-bar">
+    <div class="whisper-tabs" id="catTabs">
+      <button class="whisper-tab active" data-cat="all">Todo Mujer</button>
+      <button class="whisper-tab" data-cat="vestidos">Vestidos &amp; Túnicas</button>
+      <button class="whisper-tab" data-cat="tops">Tops &amp; Blusas</button>
+      <button class="whisper-tab" data-cat="camisas">Camisas &amp; Chalecos</button>
+      <button class="whisper-tab" data-cat="pantalones">Pantalones, Faldas &amp; Shorts</button>
+      <button class="whisper-tab" data-cat="camisetas">Camisetas &amp; Buzos</button>
+      <button class="whisper-tab" data-cat="bolsos">Bolsos Iraca</button>
+    </div>
+    <div class="whisper-meta">
+      <select class="whisper-select" id="sortSel" aria-label="Ordenar">
+        <option value="featured">Orden: Curaduría</option>
+        <option value="price-asc">Precio: Menor a mayor</option>
+        <option value="price-desc">Precio: Mayor a menor</option>
+      </select>
+      <span class="whisper-count" id="womenCount">45 piezas</span>
+    </div>
+  </div>
+
+  <main class="section-pad">
+    <div class="editorial-grid" id="womenGrid"></div>
+  </main>
+
+  <script src="data/aguel-catalog.js"></script>
+  <script src="assets/aguel-app.js"></script>
+  <script>
+    window.AguelApp.initAguelShell("mujer", false);
+    const WOMEN_ALL = window.AguelApp.PRODUCTS
+      .filter((p) => p.collections.includes("women"))
+      .sort((a, b) => (a.category === "Bolsos" ? 1 : 0) - (b.category === "Bolsos" ? 1 : 0));
+
+    const CAT_MAP = {
+      vestidos: ["Vestidos", "Túnicas", "Enterizos"],
+      tops: ["Tops", "Blusas"],
+      camisas: ["Camisas", "Chalecos", "Chaquetas"],
+      pantalones: ["Pantalones", "Faldas", "Shorts", "Bermudas", "Joggers"],
+      camisetas: ["Camisetas", "Esqueletos", "Buzos"],
+      bolsos: ["Bolsos", "Accesorios"],
+    };
+
+    let activeCat = "all";
+    let activeSort = "featured";
+
+    function renderWomen() {
+      let list = WOMEN_ALL.filter((p) => {
+        if (activeCat === "all") return true;
+        return (CAT_MAP[activeCat] || []).includes(p.category);
+      });
+      if (activeSort === "price-asc") list.sort((a, b) => a.price - b.price);
+      else if (activeSort === "price-desc") list.sort((a, b) => b.price - a.price);
+
+      document.getElementById("womenCount").textContent = `${list.length} piezas`;
+      const grid = document.getElementById("womenGrid");
+
+      let html = "";
+      list.forEach((p, idx) => {
+        html += window.AguelApp.productCardHTML(p);
+        if (activeCat === "all" && idx === 7) {
+          html += window.AguelApp.editorialBreakHTML({
+            eyebrow: "Estilismo I · Sin Deberte Nada",
+            title: "Conjunto Tibirre & Palma",
+            text: "Lino 100% colombiano con cordón artesanal y caída arquitectónica pensado para el calor colonial.",
+            photo: "assets/hero-colonial.jpg",
+            ctaText: "Ver colección Sin Deberte Nada",
+            ctaHref: "colecciones.html#sin-deberte-nada",
+            handles: ["top-tibirre-blanco", "pantalon-lino-blanco-palma"],
+          });
+        }
+        if (activeCat === "all" && idx === 19) {
+          html += window.AguelApp.editorialBreakHTML({
+            eyebrow: "Estilismo II · Ingrato Amor",
+            title: "Sastrería & Tejido Manual",
+            text: "Del punto abierto de las artesanas de Sopó a las camisas de inspiración western en cafetales.",
+            photo: "assets/hero-romance.jpg",
+            ctaText: "Explorar Ingrato Amor",
+            ctaHref: "colecciones.html#ingrato-amor",
+            handles: ["camisa-aurora", "camisa-margarita"],
+          });
+        }
+      });
+      grid.innerHTML = html;
+    }
+
+    document.querySelectorAll("#catTabs .whisper-tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#catTabs .whisper-tab").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat;
+        renderWomen();
+      });
+    });
+    document.getElementById("sortSel").addEventListener("change", (e) => {
+      activeSort = e.target.value;
+      renderWomen();
+    });
+
+    renderWomen();
+  </script>
+</body>
+</html>

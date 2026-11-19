@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accesorios &amp; Iraca — AGUEL</title>
+  <link rel="stylesheet" href="assets/aguel-store.css" />
+</head>
+<body>
+  <header class="page-opener">
+    <div>
+      <div class="opener-eyebrow">Objetos Artesanales · Palma de Iraca &amp; Cuero</div>
+      <h1 class="opener-title">Accesorios</h1>
+    </div>
+    <p class="opener-desc">
+      Piezas tejidas íntegramente a mano en fibra natural de palma de iraca con cargaderas, monederos interiores y herrajes en cuero legítimo, junto a sombrerería de edición limitada inspirada en el café colombiano.
+    </p>
+  </header>
+
+  <section class="section-pad">
+    <div class="spread-asymmetric" style="margin-bottom:4.5rem;">
+      <div class="spread-img">
+        <img src="assets/iraca-mostaza.jpg" alt="Bolso Iraca Mostaza tejido a mano" />
+      </div>
+      <div class="spread-copy">
+        <div class="spread-numeral">01</div>
+        <div class="opener-eyebrow">Cestería Contemporánea</div>
+        <h2 class="spread-title">Palma de Iraca:<br /><em>Tiempo tejido a mano</em></h2>
+        <p class="spread-text">
+          Cada bolso de nuestra línea de accesorios celebra la tradición artesanal colombiana combinando fibras vegetales seleccionadas con cuero curtido natural en tonalidades Crudo, Mostaza y Negro.
+        </p>
+        <div style="border-top:1px solid var(--hairline); padding-top:1.25rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem; font-size:0.82rem;">
+          <div>
+            <div style="font-family:var(--display); font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--terracota);">Formato Pequeño</div>
+            <div>COP $550.000 · Negro / Crudo Negro</div>
+          </div>
+          <div>
+            <div style="font-family:var(--display); font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--terracota);">Formato Mediano</div>
+            <div>COP $700.000 · Crudo / Mostaza / Crudo Negro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid var(--hairline); padding-top:3rem;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2rem;">
+        <h2 style="font-family:var(--serif); font-weight:300; font-size:2.2rem; margin:0;">Todas las piezas de colección</h2>
+        <span class="whisper-count" id="accCount">6 piezas</span>
+      </div>
+      <div class="editorial-grid cols-3" id="accGrid"></div>
+    </div>
+  </section>
+
+  <script src="data/aguel-catalog.js"></script>
+  <script src="assets/aguel-app.js"></script>
+  <script>
+    window.AguelApp.initAguelShell("accesorios", false);
+    const acc = window.AguelApp.PRODUCTS.filter(
+      (p) => p.collections.includes("accesorios") || p.category === "Bolsos" || p.category === "Accesorios"
+    );
+    document.getElementById("accCount").textContent = `${acc.length} piezas`;
+    document.getElementById("accGrid").innerHTML = acc.map((p) => window.AguelApp.productCardHTML(p)).join("");
+  </script>
+</body>
+</html>

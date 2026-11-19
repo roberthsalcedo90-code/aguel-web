@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pieza — AGUEL</title>
+  <link rel="stylesheet" href="assets/aguel-store.css" />
+</head>
+<body>
+  <main class="pdp-shell" id="pdpMain">
+    <div class="pdp-gallery" id="pdpGallery"></div>
+
+    <aside class="pdp-buybox">
+      <nav class="pdp-breadcrumb" id="pdpCrumb"></nav>
+      <h1 class="pdp-title" id="pdpTitle"></h1>
+      <div class="pdp-price" id="pdpPrice"></div>
+      <p class="pdp-desc" id="pdpDesc"></p>
+
+      <div style="font-family:var(--display); font-size:0.66rem; letter-spacing:0.18em; text-transform:uppercase;">Talla / Edición</div>
+      <div class="pdp-sizes" id="pdpSizes"></div>
+
+      <button class="btn-luxe" id="pdpAddBtn" type="button">Añadir a la Bolsa</button>
+      <a class="btn-luxe-outline" id="pdpShopifyLink" href="https://aguel.co" target="_blank" rel="noopener">Ver ficha en aguel.co &rarr;</a>
+
+      <div class="pdp-accordions">
+        <div class="pdp-acc-item open">
+          <button class="pdp-acc-btn" type="button" onclick="this.parentElement.classList.toggle('open')">
+            <span>Cuidados de las prendas</span><span>+</span>
+          </button>
+          <div class="pdp-acc-body">
+            Voltea la prenda al revés antes de lavar en agua fría y ciclo suave con detergente neutro. Sin cloro ni suavizantes. Secar a la sombra al aire libre y planchar ligeramente húmeda por el revés.
+          </div>
+        </div>
+        <div class="pdp-acc-item">
+          <button class="pdp-acc-btn" type="button" onclick="this.parentElement.classList.toggle('open')">
+            <span>Envíos y Cambios (5 días)</span><span>+</span>
+          </button>
+          <div class="pdp-acc-body">
+            Despachos desde Amco Studio S.A.S., Pereira, Colombia. Tienes 5 días calendario tras recibir tu pedido para solicitar cambio por talla, otra referencia o saldo a favor vigente por 6 meses escribiendo a <strong>info@aguel.co</strong>.
+          </div>
+        </div>
+        <div class="pdp-acc-item">
+          <button class="pdp-acc-btn" type="button" onclick="this.parentElement.classList.toggle('open')">
+            <span>Origen &amp; Atelier</span><span>+</span>
+          </button>
+          <div class="pdp-acc-body">
+            Diseñado en el Eje Cafetero colombiano. Confección en fibras naturales (lino, algodón y palma de iraca) con intervención de talleres artesanales locales.
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <section class="section-pad" style="border-top:1px solid var(--hairline);">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2rem;">
+      <div>
+        <div class="opener-eyebrow" style="margin-bottom:0.2rem;">Estilismo Sugerido</div>
+        <h2 style="font-family:var(--serif); font-weight:300; font-size:2.2rem; margin:0;">Completa el Look</h2>
+      </div>
+      <a class="text-link" href="colecciones.html">Explorar colecciones &rarr;</a>
+    </div>
+    <div class="editorial-grid" id="pdpRelated"></div>
+  </section>
+
+  <script src="data/aguel-catalog.js"></script>
+  <script src="assets/aguel-app.js"></script>
+  <script>
+    window.AguelApp.initAguelShell("", false);
+    const P = window.AguelApp.PRODUCTS;
+    const params = new URLSearchParams(window.location.search);
+    const handle = params.get("p") || "camisa-aurora";
+    const product = P.find((x) => x.handle === handle) || P[0];
+
+    document.title = `${product.title} — AGUEL`;
+    const genderHref = product.gender === "Hombre" ? "hombre.html" : "mujer.html";
+    document.getElementById("pdpCrumb").innerHTML = `
+      <a href="index.html">Inicio</a> <span>/</span>
+      <a href="${genderHref}">${product.gender}</a> <span>/</span>
+      <a href="colecciones.html">${product.capsule}</a> <span>/</span>
+      <span style="color:var(--ink);">${product.category}</span>`;
+
+    document.getElementById("pdpTitle").textContent = product.title;
+    document.getElementById("pdpDesc").textContent = product.desc || "Pieza de diseño colombiano AGUEL en fibras naturales.";
+    document.getElementById("pdpShopifyLink").href = product.url;
+    document.getElementById("pdpPrice").innerHTML = product.compare
+      ? `<span style="color:var(--terracota);">${window.AguelApp.fmtCOP(product.price)}</span> <span class="price-old">${window.AguelApp.fmtCOP(product.compare)}</span>`
+      : window.AguelApp.fmtCOP(product.price);
+
+    // Gallery: local guaranteed views + remote supplemental high-res views if distinct
+    const imgs = [...product.images];
+    if (product.remote && product.remote.length > 2) {
+      imgs.push(...product.remote.slice(2, 4));
+    }
+    document.getElementById("pdpGallery").innerHTML = imgs
+      .map(
+        (src, i) => `
+      <figure>
+        <img src="${src}" alt="${product.title} vista ${i + 1}" onerror="this.parentElement.style.display='none'" />
+      </figure>`
+      )
+      .join("");
+
+    let selectedVariant = product.variants.find((v) => v.available) || product.variants[0];
+
+    function renderSizes() {
+      document.getElementById("pdpSizes").innerHTML = product.variants
+        .map((v) => {
+          const lbl = v.title === "Default Title" ? "Talla Única" : v.title;
+          const act = selectedVariant && selectedVariant.id === v.id ? "active" : "";
+          return `<button class="pdp-size-btn ${act}" type="button" ${
+            v.available ? "" : "disabled"
+          } onclick="selectVariant(${v.id})">${lbl}</button>`;
+        })
+        .join("");
+
+      const btn = document.getElementById("pdpAddBtn");
+      if (!selectedVariant || !selectedVariant.available) {
+        btn.disabled = true;
+        btn.textContent = "Sin existencias en tienda";
+      } else {
+        btn.disabled = false;
+        btn.textContent = `Añadir a la Bolsa · ${window.AguelApp.fmtCOP(selectedVariant.price)}`;
+        btn.onclick = () => {
+          window.AguelApp.addToBag(product.id, selectedVariant.id);
+          window.AguelApp.openDrawer("fwBagDrawer");
+        };
+      }
+    }
+
+    function selectVariant(vid) {
+      selectedVariant = product.variants.find((v) => v.id === vid);
+      renderSizes();
+    }
+    renderSizes();
+
+    // Related / Complete the look: prefer different category in same capsule + an accessory
+    const sameCapsule = P.filter(
+      (x) => x.id !== product.id && x.capsule === product.capsule && x.category !== product.category
+    ).slice(0, 3);
+    const bagPick = P.find((x) => x.category === "Bolsos" && x.id !== product.id);
+    const related = [...sameCapsule, ...(bagPick ? [bagPick] : [])];
+    if (related.length < 4) {
+      P.filter((x) => x.id !== product.id && !related.includes(x))
+        .slice(0, 4 - related.length)
+        .forEach((x) => related.push(x));
+    }
+    document.getElementById("pdpRelated").innerHTML = related
+      .slice(0, 4)
+      .map((x) => window.AguelApp.productCardHTML(x))
+      .join("");
+  </script>
+</body>
+</html>

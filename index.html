@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGUEL — Colombian Resortwear</title>
+  <link rel="stylesheet" href="assets/aguel-store.css" />
+</head>
+<body>
+  <!-- FULL-BLEED RUNWAY HERO -->
+  <section class="runway-hero" id="runwayHero">
+    <div class="runway-hero-slide active">
+      <video id="heroCampaignVideo" playsinline autoplay loop muted preload="auto" poster="assets/hero-colonial.jpg">
+        <source src="https://aguel.co/cdn/shop/videos/c/vp/5527186a873e4e50b260d9ee6283aefe/5527186a873e4e50b260d9ee6283aefe.HD-1080p-7.2Mbps-57184684.mp4?v=0" type="video/mp4" />
+      </video>
+      <div class="runway-scrim"></div>
+      <div class="runway-overlay">
+        <div>
+          <div class="runway-kicker">Film de Campaña · Ingrato Amor</div>
+          <h1 class="runway-title">Drama, romance y cafetales al sol</h1>
+          <a class="runway-link" href="colecciones.html#ingrato-amor">Descubrir la colección &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="runway-hero-slide">
+      <img src="assets/hero-colonial.jpg" alt="AGUEL — Romance Colonial" />
+      <div class="runway-scrim"></div>
+      <div class="runway-overlay">
+        <div>
+          <div class="runway-kicker">Colección I · Ingrato Amor</div>
+          <h1 class="runway-title">Sastrería en lino y siluetas coloniales</h1>
+          <a class="runway-link" href="colecciones.html#ingrato-amor">Explorar Ingrato Amor &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="runway-hero-slide">
+      <img src="assets/hero-malla.jpg" alt="AGUEL — Sin Deberte Nada" />
+      <div class="runway-scrim"></div>
+      <div class="runway-overlay">
+        <div>
+          <div class="runway-kicker">Colección II · Sin Deberte Nada</div>
+          <h1 class="runway-title">Linos puros y mallas en movimiento</h1>
+          <a class="runway-link" href="colecciones.html#sin-deberte-nada">Explorar esenciales &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="runway-hero-slide">
+      <img src="assets/orchid-stamp.jpg" alt="AGUEL — Aguel Orchids" />
+      <div class="runway-scrim"></div>
+      <div class="runway-overlay">
+        <div>
+          <div class="runway-kicker">Edición Botánica · Aguel Orchids</div>
+          <h1 class="runway-title">Orquídeas colombianas en serigrafía</h1>
+          <a class="runway-link" href="colecciones.html#aguel-orchids">Ver edición botánica &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="runway-overlay" style="pointer-events:none; justify-content:flex-end; z-index:6;">
+      <div class="runway-controls" style="pointer-events:auto;">
+        <div style="display:flex; gap:0.5rem;" id="videoBtns">
+          <button class="runway-video-ctrl" id="btnToggleVideo" type="button" onclick="toggleHeroVideo()">Pausar Film</button>
+          <button class="runway-video-ctrl" id="btnMuteVideo" type="button" onclick="toggleHeroAudio()">Audio: Off</button>
+        </div>
+        <div class="runway-dots" id="heroDots">
+          <button class="runway-dot active" type="button" onclick="setRunwaySlide(0)" title="Film Oficial"></button>
+          <button class="runway-dot" type="button" onclick="setRunwaySlide(1)" title="Colonial"></button>
+          <button class="runway-dot" type="button" onclick="setRunwaySlide(2)" title="Sin Deberte Nada"></button>
+          <button class="runway-dot" type="button" onclick="setRunwaySlide(3)" title="Aguel Orchids"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 ASYMMETRIC MAGAZINE SPREAD: INGRATO AMOR & AURORA -->
+  <section class="section-pad">
+    <div class="spread-asymmetric">
+      <div class="spread-img">
+        <img src="assets/hero-hacienda.jpg" alt="Ingrato Amor en Hacienda Cafetera" />
+      </div>
+      <div class="spread-copy">
+        <div class="spread-numeral">01</div>
+        <h2 class="spread-title">Ingrato Amor:<br /><em>Personajes indomables</em></h2>
+        <p class="spread-text">
+          Aguel revive la estética de las telenovelas colombianas entre cafetales bañados de sol y casonas coloniales. Sastrería relajada en lino, siluetas western, cuero y tejido manual heredado entre generaciones.
+        </p>
+        <a class="text-link" href="colecciones.html#ingrato-amor">Ver las 35 piezas de la colección &rarr;</a>
+
+        <a class="lookbook-inset" href="producto.html?p=camisa-aurora">
+          <img src="assets/catalog/camisa-aurora-1.jpg" alt="Camisa Aurora tejida en Sopó" />
+          <div>
+            <div style="font-family:var(--display); font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--terracota);">Pieza en Foco · Sopó</div>
+            <div style="font-family:var(--serif); font-size:1.35rem; margin:0.15rem 0;">Camisa Aurora</div>
+            <div style="font-family:var(--display); font-size:0.76rem; color:var(--muted);">Tejida a mano en algodón · COP $780.000</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURATED RUNWAY RAIL: 8 DESTACADOS -->
+  <section class="section-pad" style="padding-top:0;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2rem; border-bottom:1px solid var(--hairline); padding-bottom:1rem; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <div class="opener-eyebrow" style="margin-bottom:0.25rem;">Curaduría Estacional</div>
+        <h2 style="font-family:var(--serif); font-weight:300; font-size:clamp(1.75rem,3vw,2.5rem); margin:0;">Piezas clave de temporada</h2>
+      </div>
+      <a class="text-link" href="colecciones.html">Ver todas las colecciones &rarr;</a>
+    </div>
+    <div class="editorial-grid" id="homeFeaturedGrid"></div>
+  </section>
+
+  <!-- FULL-BLEED 50/50 DIPTYCH: MUJER / HOMBRE -->
+  <section class="diptych-bleed">
+    <a class="diptych-panel" href="mujer.html">
+      <img src="assets/hero-romance.jpg" alt="AGUEL Mujer" style="object-position: center 22%;" />
+      <div class="diptych-label">
+        <div class="runway-kicker" style="margin-bottom:0;">45 Piezas &amp; Accesorios</div>
+        <h2>Mujer</h2>
+        <span class="runway-link">Explorar colección femenina &rarr;</span>
+      </div>
+    </a>
+    <a class="diptych-panel" href="hombre.html">
+      <img src="assets/collections/men.jpg" alt="AGUEL Hombre" style="object-position: center 22%;" />
+      <div class="diptych-label">
+        <div class="runway-kicker" style="margin-bottom:0;">43 Piezas &amp; Sastrería</div>
+        <h2>Hombre</h2>
+        <span class="runway-link">Explorar colección masculina &rarr;</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- 02 TERRACOTA INTERLUDE: OFICIO EN IRACA & ORQUIDEAS -->
+  <section class="section-pad band-terracota">
+    <div class="spread-asymmetric reverse">
+      <div class="spread-copy">
+        <div class="spread-numeral" style="color:var(--arena);">02</div>
+        <h2 class="spread-title" style="color:var(--lino);">Palma de Iraca &amp;<br />Estampilla Botánica</h2>
+        <p class="spread-text" style="color:rgba(249,248,246,0.82);">
+          Cestería tejida íntegramente a mano en fibra de iraca con herrajes en cuero natural junto a nuestra cápsula de orquídeas colombianas inspirada en antiguas estampillas de correos.
+        </p>
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+          <a class="runway-link" href="accesorios.html">Objetos &amp; Iraca &rarr;</a>
+          <a class="runway-link" href="colecciones.html#aguel-orchids">Aguel Orchids &rarr;</a>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <a href="accesorios.html" class="spread-img" style="aspect-ratio:3/4;">
+          <img src="assets/iraca-mostaza.jpg" alt="Bolso Iraca Mostaza" />
+        </a>
+        <a href="colecciones.html#aguel-orchids" class="spread-img" style="aspect-ratio:3/4;">
+          <img src="assets/orchid-stamp.jpg" alt="Aguel Orchids Estampilla" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ARCHIVE STRIP: CASA PALMA & LAS DELICIAS -->
+  <section class="section-pad band-oliva">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,5rem); align-items:end;">
+      <div>
+        <div class="spread-numeral" style="color:var(--arena);">03</div>
+        <h2 class="spread-title" style="color:var(--lino);">Casa Palma &amp; Las Delicias</h2>
+        <p class="spread-text" style="color:rgba(249,248,246,0.82); margin-bottom:1.5rem;">
+          De la arquitectura residencial de <strong>Helena Merheg</strong> y el lente de <strong>Faber Franco</strong> hasta los cañaduzales del Valle del Cauca en los años noventa.
+        </p>
+        <a class="runway-link" href="archivo.html">Leer archivo &amp; cuidados del lino &rarr;</a>
+      </div>
+      <div style="border-left:1px solid var(--hairline-light); padding-left:2rem; display:flex; flex-direction:column; gap:1rem;">
+        <div>
+          <div style="font-family:var(--display); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--arena);">Pilar I</div>
+          <div style="font-family:var(--serif); font-size:1.35rem;">Legado Artesanal · Sopó, Iraca &amp; Shibori</div>
+        </div>
+        <div>
+          <div style="font-family:var(--display); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--arena);">Pilar II</div>
+          <div style="font-family:var(--serif); font-size:1.35rem;">Frescura &amp; Comodidad en Fibras Naturales</div>
+        </div>
+        <div>
+          <div style="font-family:var(--display); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--arena);">Pilar III</div>
+          <div style="font-family:var(--serif); font-size:1.35rem;">Piezas Atemporales · Slow Living Colombiano</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="data/aguel-catalog.js"></script>
+  <script src="assets/aguel-app.js"></script>
+  <script>
+    window.AguelApp.initAguelShell("home", true);
+
+    const FEATURED_HANDLES = [
+      "top-tibirre-blanco",
+      "camisa-filandia",
+      "vestido-quimbaya",
+      "camisa-margarita",
+      "pantalon-lino-barbas-cafe",
+      "vestido-estopa",
+      "bolso-iraca-cuero-mediano-mostaza",
+      "camisa-arabiga",
+    ];
+    const featured = FEATURED_HANDLES
+      .map((h) => window.AguelApp.PRODUCTS.find((p) => p.handle === h))
+      .filter(Boolean);
+    document.getElementById("homeFeaturedGrid").innerHTML = featured
+      .map((p) => window.AguelApp.productCardHTML(p))
+      .join("");
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".runway-hero-slide");
+    const dots = document.querySelectorAll(".runway-dot");
+    const videoEl = document.getElementById("heroCampaignVideo");
+    const videoBtns = document.getElementById("videoBtns");
+
+    function setRunwaySlide(idx) {
+      currentSlide = idx;
+      slides.forEach((s, i) => s.classList.toggle("active", i === idx));
+      dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+      if (videoBtns) videoBtns.style.display = idx === 0 ? "flex" : "none";
+      if (videoEl) {
+        if (idx === 0) videoEl.play().catch(() => {});
+        else videoEl.pause();
+      }
+    }
+
+    function toggleHeroVideo() {
+      if (!videoEl) return;
+      const btn = document.getElementById("btnToggleVideo");
+      if (videoEl.paused) {
+        videoEl.play().catch(() => {});
+        btn.textContent = "Pausar Film";
+      } else {
+        videoEl.pause();
+        btn.textContent = "Reproducir";
+      }
+    }
+
+    function toggleHeroAudio() {
+      if (!videoEl) return;
+      const btn = document.getElementById("btnMuteVideo");
+      videoEl.muted = !videoEl.muted;
+      btn.textContent = videoEl.muted ? "Audio: Off" : "Audio: On";
+    }
+  </script>
+</body>
+</html>

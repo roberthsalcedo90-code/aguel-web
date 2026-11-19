@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hombre — AGUEL</title>
+  <link rel="stylesheet" href="assets/aguel-store.css" />
+</head>
+<body>
+  <header class="page-opener">
+    <div>
+      <div class="opener-eyebrow">Colombian Resortwear · 43 Prendas &amp; Sastrería</div>
+      <h1 class="opener-title">Hombre</h1>
+    </div>
+    <p class="opener-desc">
+      Camisas en lino lavado y malla calada, pantalones de sastrería barbas, denim de jornalero, teñidos shibori y accesorios tejidos a mano.
+    </p>
+  </header>
+
+  <div class="whisper-bar">
+    <div class="whisper-tabs" id="catTabs">
+      <button class="whisper-tab active" data-cat="all">Todo Hombre</button>
+      <button class="whisper-tab" data-cat="camisas">Camisas</button>
+      <button class="whisper-tab" data-cat="camisetas">Camisetas &amp; Esqueletos</button>
+      <button class="whisper-tab" data-cat="pantalones">Pantalones &amp; Jeans</button>
+      <button class="whisper-tab" data-cat="shorts">Bermudas &amp; Shorts</button>
+      <button class="whisper-tab" data-cat="exterior">Chaquetas, Chalecos &amp; Buzos</button>
+      <button class="whisper-tab" data-cat="accesorios">Bolsos &amp; Sombreros</button>
+    </div>
+    <div class="whisper-meta">
+      <select class="whisper-select" id="sortSel" aria-label="Ordenar">
+        <option value="featured">Orden: Curaduría</option>
+        <option value="price-asc">Precio: Menor a mayor</option>
+        <option value="price-desc">Precio: Mayor a menor</option>
+      </select>
+      <span class="whisper-count" id="menCount">43 piezas</span>
+    </div>
+  </div>
+
+  <main class="section-pad">
+    <div class="editorial-grid" id="menGrid"></div>
+  </main>
+
+  <script src="data/aguel-catalog.js"></script>
+  <script src="assets/aguel-app.js"></script>
+  <script>
+    window.AguelApp.initAguelShell("hombre", false);
+    const MEN_ALL = window.AguelApp.PRODUCTS
+      .filter((p) => p.collections.includes("men"))
+      .sort((a, b) => (a.category === "Bolsos" ? 1 : 0) - (b.category === "Bolsos" ? 1 : 0));
+
+    const CAT_MAP = {
+      camisas: ["Camisas"],
+      camisetas: ["Camisetas", "Esqueletos"],
+      pantalones: ["Pantalones", "Jeans", "Joggers", "Enterizos"],
+      shorts: ["Bermudas", "Shorts"],
+      exterior: ["Chaquetas", "Chalecos", "Buzos"],
+      accesorios: ["Bolsos", "Accesorios"],
+    };
+
+    let activeCat = "all";
+    let activeSort = "featured";
+
+    function renderMen() {
+      let list = MEN_ALL.filter((p) => {
+        if (activeCat === "all") return true;
+        return (CAT_MAP[activeCat] || []).includes(p.category);
+      });
+      if (activeSort === "price-asc") list.sort((a, b) => a.price - b.price);
+      else if (activeSort === "price-desc") list.sort((a, b) => b.price - a.price);
+
+      document.getElementById("menCount").textContent = `${list.length} piezas`;
+      const grid = document.getElementById("menGrid");
+
+      let html = "";
+      list.forEach((p, idx) => {
+        html += window.AguelApp.productCardHTML(p);
+        if (activeCat === "all" && idx === 7) {
+          html += window.AguelApp.editorialBreakHTML({
+            eyebrow: "Look 01 · Paisaje Cafetero",
+            title: "Silueta Hacienda & Denim",
+            text: "Camisería western en tonos arena sobre denim de tiro amplio inspirado en las polainas colombianas.",
+            photo: "assets/hero-hacienda.jpg",
+            ctaText: "Ver colección Ingrato Amor",
+            ctaHref: "colecciones.html#ingrato-amor",
+            handles: ["camisa-cowboy", "jean-polainas"],
+          });
+        }
+        if (activeCat === "all" && idx === 19) {
+          html += window.AguelApp.editorialBreakHTML({
+            eyebrow: "Look 02 · Fibras Abiertas",
+            title: "Textura Filandia & Amazona",
+            text: "Tejido de malla en 100% algodón que evoca los tradicionales sacos de café del Quindío.",
+            photo: "assets/hero-malla.jpg",
+            ctaText: "Ver archivo masculino",
+            ctaHref: "colecciones.html#ingrato-amor",
+            handles: ["camisa-filandia", "pantalon-amazona-malla-algodon"],
+          });
+        }
+      });
+      grid.innerHTML = html;
+    }
+
+    document.querySelectorAll("#catTabs .whisper-tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#catTabs .whisper-tab").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat;
+        renderMen();
+      });
+    });
+    document.getElementById("sortSel").addEventListener("change", (e) => {
+      activeSort = e.target.value;
+      renderMen();
+    });
+
+    renderMen();
+  </script>
+</body>
+</html>

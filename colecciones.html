@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colecciones — AGUEL</title>
+  <link rel="stylesheet" href="assets/aguel-store.css" />
+</head>
+<body>
+  <header class="page-opener">
+    <div>
+      <div class="opener-eyebrow">Capítulos Estacionales · 66 Referencias</div>
+      <h1 class="opener-title">Colecciones AGUEL</h1>
+    </div>
+    <p class="opener-desc">
+      Cada universo narrativo reúne su campaña fotográfica, su historia de origen y la totalidad de las piezas reales confeccionadas para esa entrega.
+    </p>
+  </header>
+
+  <nav class="whisper-bar" aria-label="Navegación de colecciones">
+    <div class="whisper-tabs">
+      <a class="whisper-tab active" href="#ingrato-amor">01 Ingrato Amor (35)</a>
+      <a class="whisper-tab" href="#sin-deberte-nada">02 Sin Deberte Nada (17)</a>
+      <a class="whisper-tab" href="#aguel-orchids">03 Aguel Orchids (3)</a>
+      <a class="whisper-tab" href="#archivo-clasico">04 Archivo Casa Palma &amp; Delicias (10)</a>
+    </div>
+    <div class="whisper-meta">
+      <a href="accesorios.html" class="whisper-tab">Ir a Accesorios &amp; Iraca &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- 01 INGRATO AMOR -->
+  <section id="ingrato-amor" class="section-pad">
+    <div class="spread-asymmetric" style="margin-bottom:3.5rem;">
+      <div class="spread-img">
+        <img src="assets/hero-colonial.jpg" alt="Colección Ingrato Amor" />
+      </div>
+      <div class="spread-copy">
+        <div class="spread-numeral">01</div>
+        <div class="opener-eyebrow">Colección Insignia · 35 Piezas</div>
+        <h2 class="spread-title">Ingrato Amor</h2>
+        <p class="spread-text">
+          «Drama. Romance. Cafetales bañados de sol. Aguel revive la magia de las telenovelas colombianas: personajes intensos, paisajes indomables y un estilo que no pide permiso.»
+        </p>
+        <p style="font-size:0.82rem; color:var(--muted);">
+          Incluye sastrería en lino café y blanco, tejido manual de Sopó (<em>Camisa Aurora</em>), cortes western (<em>Camisa Cowboy</em>, <em>Camisa Margarita</em>), mallas respirables y estampados homenaje al Eje Cafetero.
+        </p>
+      </div>
+    </div>
+    <div class="editorial-grid" id="gridIngrato"></div>
+  </section>
+
+  <!-- 02 SIN DEBERTE NADA -->
+  <section id="sin-deberte-nada" class="section-pad band-hueso">
+    <div class="spread-asymmetric reverse" style="margin-bottom:3.5rem;">
+      <div class="spread-copy">
+        <div class="spread-numeral">02</div>
+        <div class="opener-eyebrow">Esenciales de Verano · 17 Piezas</div>
+        <h2 class="spread-title">Sin Deberte Nada</h2>
+        <p class="spread-text">
+          Siluetas depuradas concebidas para habitar el trópico sin esfuerzo: halters en lino puro (<em>Top Tibirre</em>), pantalones fluidos con cordón de algodón, camisas en tie-dye costero y denim jornalero.
+        </p>
+      </div>
+      <div class="spread-img">
+        <img src="assets/hero-malla.jpg" alt="Sin Deberte Nada" />
+      </div>
+    </div>
+    <div class="editorial-grid" id="gridSinDeberte"></div>
+  </section>
+
+  <!-- 03 AGUEL ORCHIDS -->
+  <section id="aguel-orchids" class="section-pad band-terracota">
+    <div class="spread-asymmetric" style="margin-bottom:3.5rem;">
+      <div class="spread-img">
+        <img src="assets/orchid-stamp.jpg" alt="Aguel Orchids" />
+      </div>
+      <div class="spread-copy">
+        <div class="spread-numeral" style="color:var(--arena);">03</div>
+        <div class="opener-eyebrow" style="color:var(--arena);">Cápsula Serigráfica · 3 Piezas</div>
+        <h2 class="spread-title" style="color:var(--lino);">Aguel Orchids</h2>
+        <p class="spread-text" style="color:rgba(249,248,246,0.82);">
+          Diseños exclusivos que reinterpretan especies de orquídeas colombianas emblemáticas —<em>Masdevallia Coccinea</em>, <em>Miltonia Vexillaria</em> y <em>The Wild Orchid</em>— mediante ilustraciones inspiradas en antiguas estampillas postales y libros botánicos.
+        </p>
+      </div>
+    </div>
+    <div class="editorial-grid cols-3" id="gridOrchids"></div>
+  </section>
+
+  <!-- 04 ARCHIVO CLASICO -->
+  <section id="archivo-clasico" class="section-pad">
+    <div class="spread-asymmetric reverse" style="margin-bottom:3.5rem;">
+      <div class="spread-copy">
+        <div class="spread-numeral">04</div>
+        <div class="opener-eyebrow">Casa Palma &amp; Las Delicias · 10 Piezas</div>
+        <h2 class="spread-title">Archivo Clásico</h2>
+        <p class="spread-text">
+          Piezas permanentes provenientes de las entregas <em>Casa Palma</em> y <em>Las Delicias</em>: linos teñidos a mano con shibori, bordados en túnicas, vestidos de paneles en lino puro y nuestro sombrero vaquero de edición limitada.
+        </p>
+        <a class="text-link" href="archivo.html">Leer las crónicas completas &rarr;</a>
+      </div>
+      <div class="spread-img">
+        <img src="assets/hero-romance.jpg" alt="Archivo Clásico AGUEL" />
+      </div>
+    </div>
+    <div class="editorial-grid" id="gridArchivo"></div>
+  </section>
+
+  <script src="data/aguel-catalog.js"></script>
+  <script src="assets/aguel-app.js"></script>
+  <script>
+    window.AguelApp.initAguelShell("colecciones", false);
+    const P = window.AguelApp.PRODUCTS;
+    const render = (elId, list) => {
+      document.getElementById(elId).innerHTML = list.map((p) => window.AguelApp.productCardHTML(p)).join("");
+    };
+
+    render("gridIngrato", P.filter((p) => p.collections.includes("ingrato-amor")));
+    render("gridSinDeberte", P.filter((p) => p.collections.includes("sin-deberte-nada")));
+    render("gridOrchids", P.filter((p) => p.collections.includes("aguel-orchids")));
+    render("gridArchivo", P.filter((p) => p.capsule === "Archivo Clásico"));
+  </script>
+</body>
+</html>
